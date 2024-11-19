@@ -1,0 +1,24 @@
+{% extends 'inventory/base.html' %}
+{% load static %}
+{% block content %}
+    {% if messages %}
+        <div class="alert alert-info">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <form method="POST" class="form-inline justify-content-center mb-4">
+        {% csrf_token %}
+        <input type="search" name="search" class="form-control mr-sm-2" placeholder="Search for tools...">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    
+    <img style="width: 100%; height: 250px; object-fit: cover;" class="img-fluid rounded mb-4" src="{% static 'images/homepage.png' %}" alt="Homepage Image">
+    <hr>
+    <div class="text-center">
+        <h2 class="text-primary">Buy all types of machine tools now</h2>
+        <a href="{% url 'tools-user' %}" class="btn btn-success">Click here</a>
+    </div>
+{% endblock %}
+

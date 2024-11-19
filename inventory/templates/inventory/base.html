@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Machine Tools</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Machine Tools</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form id="logoutform" method="POST" action="{% url 'user-logout' %}">
+                            {% csrf_token %}
+                        </form>
+                        <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'user-profile' %}" class="nav-link">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'aboutus' %}" class="nav-link">About us</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin" class="nav-link">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'user-login' %}" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'user-register' %}" class="nav-link">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'aboutus' %}" class="nav-link">About us</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="text-center text-primary">Machine Tools Sales</h1>
+        <hr>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Machine Tools Sales. All rights reserved.</p>
+    </footer> -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

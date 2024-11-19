@@ -1,0 +1,32 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="text-primary">customer : {{ customer.name }}</h2>
+        <h4 class="text-primary">Email : {{ customer.email }}</h2>
+        <h4 class="text-primary"> Address : {{ customer.address }}</h2>
+        <a href="{% url 'user-log' %}" class="btn btn-outline-primary mb-4">Purchase history</a>
+        
+        <h2 class="text-primary">My Orders</h2>
+        <ul class="list-group">
+            {% for order in orders %}
+                {% for item in order.orderitem_set.all %}
+                    {% if not item.status %}
+                    <li class="list-group-item"> 
+                        <strong>Product:</strong> {{ item.product.name }} <br>
+                        <strong>Quantity:</strong> {{ item.quantity }} <br>
+                        <strong>Price:</strong> {{ item.product.price }} <br>
+                        <strong>Order Delivered:</strong> {{ order.status }} <br>
+                        <strong>Total:</strong> {{ order.total_amount }} <br>      
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            {% empty %}
+                <li class="list-group-item">
+                    No current orders.. Buy some <a href="{% url 'tools-user' %}">tools</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,23 @@
+# Virtual Environment
+.venv/
+
+# Django-specific files
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media/
+
+# IDE-specific files
+.vscode/
+
+# Environment files
+.env
+
+# Python-specific files
+*.py[cod]
+.DS_Store
+.coverage
+.mypy_cache/
+.pytest_cache/

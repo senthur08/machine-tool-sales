@@ -1,0 +1,19 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-primary">Purchase History</h2>
+    <ul class="list-group">
+        {% for order in orders %}
+            {% for item in order.orderitem_set.all %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ item.product.name }} - Quantity: {{ item.quantity }} - Date: {{ order.order_date|date:"F j, Y" }}</span>
+                </li>
+            {% endfor %}
+        {% empty %}
+            <li class="list-group-item">No purchase history</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'inventory/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-primary text-center mb-4">Product Inventory</h2>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ product.imageURL }}" class="card-img-top fixed-size-image" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <a href="{% url 'single-tool' product.id %}">
+                            <h2 class="card-title">{{ product.name }}</h2>
+                        </a>
+                        <p class="card-text"><strong>Price: </strong>{{ product.price }}</p>
+                        {% if product.stock_quantity > 0 %}
+                            <h4 class="text-success">In Stock</h4>
+                        {% else %}
+                            <h4 class="text-danger">Out of Stock</h4>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                </div><div class="row">
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<style>
+    .fixed-size-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+</style>
+{% endblock %}
+
