@@ -1,6 +1,8 @@
 # Virtual Environment
 .venv/
 
+.env
+
 # Django-specific files
 *.log
 *.pot
