@@ -33,6 +33,8 @@ def order(request, pk):
     product= Product.objects.get(id=pk)
     if request.method == 'POST':
         customer= request.user.customer
+        customer.address=request.POST.get('address')
+        customer.save()
 
         transaction_id = request.POST.get('transaction-id')
 

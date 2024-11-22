@@ -9,10 +9,10 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()  # Save User instance
-            address = form.cleaned_data.get('address')
+            #address = form.cleaned_data.get('address')
             name = form.cleaned_data['username']
             email = form.cleaned_data['email']
-            Customer.objects.create(user=user, address=address, name=name, email = email) 
+            Customer.objects.create(user=user, name=name, email = email) 
             username = form.cleaned_data.get('username')
             messages.success(request,f'Welcome {username}')
             return redirect('user-login')

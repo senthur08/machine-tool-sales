@@ -5,7 +5,8 @@
             {% csrf_token %}
             <h3>Product Name : {{product.name}}</h3>
             <h4>Quantity : <input type="number" name="quantity" min="0" max="{{product.stock_quantity}}" required> </h4>
-            <h4>Transaction ID : <input  name="transaction-id"></h4>
+            <h4>Delivery Address : <input name="address" required></h4>
+            <h4>Transaction ID : <input  name="transaction-id" required></h4>
             <input type="hidden" name="product-id" value="{{ product.id }}">
             <br>
             <button type="submit">Submit</button>
